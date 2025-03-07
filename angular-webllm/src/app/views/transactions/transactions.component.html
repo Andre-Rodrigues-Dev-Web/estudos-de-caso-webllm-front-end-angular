@@ -1,0 +1,37 @@
+<div class="transactions-container">
+  <div class="content-wrapper">
+    <div class="table-section">
+      <h1>Transações do Dia</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Data</th>
+            <th>Descrição</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let trans of transactions">
+            <td>{{ trans.id }}</td>
+            <td>{{ trans.date | date:'short' }}</td>
+            <td>{{ trans.description }}</td>
+            <td>{{ trans.amount | currency:'BRL' }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <button (click)="processLargestTransaction()">Responder Maior Transação</button>
+    </div>
+    <div class="chat-section">
+      <h2>Chat de Análise</h2>
+      <div class="chat-message">
+        <p *ngIf="largestTransactionResponse; else placeholder">
+          {{ largestTransactionResponse }}
+        </p>
+        <ng-template #placeholder>
+          <p>A resposta aparecerá aqui...</p>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
